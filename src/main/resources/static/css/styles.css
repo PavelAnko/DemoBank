@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Roboto+Condensed&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+
+body {
+    height: 100vh;
+    background-image: url("../image/pxfuel.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+.btn {
+    width: 100px;
+    font-size: 20px;
+    box-shadow: 0px 2px 4px black;
+}
+
+.buttons {
+    margin-top: 15px;
+}
+
+.main_title{
+    font-family: 'Anton', sans-serif;
+    font-size: 125px;
+    font-weight: bolder;
+    width: 68%;
+    margin-left: 16%;
+    margin-top: 6%;
+    line-height: 1.1;
+    color: white;
+}
+
+.container{
+    width: 60%;
+    height: 100%;
+    text-align: center;
+}
+
+.t-1{
+    color: white;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.t-2{
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.description{
+    margin-top: 6%;
+    width: 60%;
+    margin-left: 20%;
+    font-size: 20px;
+}
+
+.annotation{
+    margin-top: 30vh;
+    opacity: 0.4;
+    font-size: 13px;
+}
+
+.form-control{
+    box-shadow: 0px 2px 4px black;
+}
+
+.class-text{
+    line-height: 1;
+}
+
+.error-message {
+    display: none;
+    color: #fff;
+    background-color: #ff4444;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-top: 5px;
+    font-family: 'Roboto Condensed', sans-serif;
+}

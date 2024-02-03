@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+*{
+    box-sizing: border-box;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+body{
+    background-color: rgba(201, 164, 178, 0.6);
+}
+
+.container{
+    max-width: 1370px;
+}
+
+.main-page-header{
+    background-color: rgba(40, 28, 68, 0.9);
+    padding: 10px 0px;
+}
+
+.t-2{
+    font-family: 'Roboto Condensed', sans-serif;
+    color: white;
+}
+
+.t-1{
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 18px;
+    color: white;
+}
+
+.navigation{
+    margin-left: 20px;
+}
+
+.navigation li{
+    display: inline-block;
+    list-style: none;
+    margin: 0px 15px;
+}
+
+.navigation li a{
+    color: white;
+    text-decoration: none;
+}
+
+.transact-edit{
+    background-color: #8d7397;
+    height: 50px;
+}
+
+.transact-edit:hover{
+    background-color: #e8af9c;
+}
+
+.accordion-button:not(.collapsed){
+    background-color: rgba(141, 115, 151, 0.95);
+    color: white;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.accordion-button:not(.collapsed)::after{
+    filter: brightness(100);
+}
+
+.accordion-button:focus{
+    box-shadow: none !important;
+}
+
+.accordion{
+    margin: 10px auto;
+}
+
+.sm-img{
+    width: 168px;
+    height: 70px;
+    background-image: url("../image/9121424.png");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.offcanvas{
+    background-image: url("../image/pxfuel2.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.payment-card{
+     display: none;
+ }
+
+.transfer-card{
+    display: none;
+}
+
