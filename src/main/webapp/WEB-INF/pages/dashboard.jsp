@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
 <head>
@@ -17,18 +19,21 @@
     <div class="container d-flex align-items-center">
         <div class="company-name t-1">Your Online Bank</div>
         <nav class="navigation">
-            <li><a href="">Dashboard</a></li>
+            <li><a href="/app/dashboard">Dashboard</a></li>
             <li><a href="">Payment History</a></li>
             <li><a href="">Transaction History</a></li>
         </nav>
         <div class="display-name ms-auto t-1 me-4" >
-            <i class="fa-regular fa-user me-1"></i>Welcome: <span>First Name - Second Name </span>
+            <i class="fa-regular fa-user me-1"></i>Welcome: <span>${users.first_name}  ${users.last_name}</span>
         </div>
-        <a href="" class="btn btn-sm t-1">
+        <a href="/logout" class="btn btn-sm t-1">
             <i class="fa-solid fa-arrow-right-from-bracket me-1" aria-hidden="true"></i>Sing Out
         </a>
     </div>
 </header>
+
+<%--<c:import url="components/accounts_display.jsp"/>--%>
+
 
 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header">
@@ -41,54 +46,72 @@
         </sele>
         <select name="transact-type" class="form-select my-3" id="transact-type" aria-label="Default select example">
             <option value="" selected disabled>-- Select Transaction Type --</option>
-            <option value="payment">Payment</option>
+            <option value="refill">Refill</option>
             <option value="transfer">Transfer</option>
         </select>
 
-        <div class="card payment-card">
+        <div class="card refill-card">
             <div class="card-body">
-                <div class="form-group mb-2">
-                    <label for="">Account Holder / Recipient</label>
-                    <input type="text" name="recipient" name="recipient" class="form-control" placeholder="Enter Account Holder / Recipient Name">
-                </div>
-                <div class="form-group mb-2">
-                    <label for="">Recipient Account Number</label>
-                    <input type="text" name="account-number" name="account-number" class="form-control" placeholder="Enter Recipient Account Number">
-                </div>
-                <div class="form-group">
-                    <lable for="">Select Account</lable>
-                    <select name="account_id" class="form-control" id="">
-                        <option value="">-- Select Account --</option>
-                    </select>
-                </div>
+<%--                <div class="form-group mb-2">--%>
+<%--                    <label for="">Account Holder / Recipient</label>--%>
+<%--                    <input type="text" name="recipient" name="recipient" class="form-control" placeholder="Enter Account Holder / Recipient Name">--%>
+<%--                </div>--%>
+<%--                <div class="form-group mb-2">--%>
+<%--                    <label for="">Recipient Account Number</label>--%>
+<%--                    <input type="text" name="account-number" name="account-number" class="form-control" placeholder="Enter Recipient Account Number">--%>
+<%--                </div>--%>
+<%--                <div class="form-group">--%>
+<%--                    <lable for="">Select Account</lable>--%>
+<%--                    <select name="account_id" class="form-control" id="">--%>
+<%--                        <option value="">-- Select Account --</option>--%>
+<%--                    </select>--%>
+<%--                </div>--%>
 
-                <div class="form-group mb-2">
-                    <label for="">Reference</label>
-                    <input type="text" name="reference" class="form-control" placeholder="Enter Reference">
-                </div>
-                <div class="form-group mb-2">
-                    <label for="">Enter Payment Amount</label>
-                    <input type="text" name="payment-amount" class="form-control" placeholder="Enter Payment Amount">
-                </div>
-                <div class="form-group mb-2">
-                    <button class="transact-btn transact-edit btn t-1 shadow col-3">Pay</button>
-                </div>
+<%--                <div class="form-group mb-2">--%>
+<%--                    <label for="">Reference</label>--%>
+<%--                    <input type="text" name="reference" class="form-control" placeholder="Enter Reference">--%>
+<%--                </div>--%>
+<%--                <div class="form-group mb-2">--%>
+<%--                    <label for="">Enter Payment Amount</label>--%>
+<%--                    <input type="text" name="payment-amount" class="form-control" placeholder="Enter Payment Amount">--%>
+<%--                </div>--%>
+                <form action="/top_up_balance" method="post">
+                    <lable for="select_your_card">Select Your Card</lable>
+                    <select name="select_card" class="form-control mb-2" id="select_card">
+                        <option value="" selected disabled>-- Select Bank Card --</option>
+                        <option value="usd_card">USD Card: ${usdCardNumber}</option>
+                        <option value="uah_card">UAH Card: ${uahCardNumber}</option>
+                    </select>
+                    <lable for="select_amount">select The Amount To Top Up</lable>
+                    <select name="select_amount" class="form-control mb-2" id="select_amount">
+                        <option value="" selected disabled>-- Select An Amount --</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                        <option value="200">200</option>
+                        <option value="500">500</option>
+                    </select>
+                    <div class="form-group mb-2">
+                        <button class="transact-btn transact-edit btn t-1 shadow col-3">Pay</button>
+                    </div>
+                </form>
             </div>
         </div>
 
         <div class="card transfer-card">
             <div class="card-body">
                 <div class="form-group">
-                    <lable for="">Select Account</lable>
-                    <select name="account_id" class="form-control">
-                        <option value="">-- Select Account --</option>
+                    <lable for="">Select Your Card</lable>
+                    <select name="select_your_card" class="form-control" id="">
+                        <option value="" selected disabled>-- Select Bank Card --</option>
+                        <option value="usd_card">USD Card: ${usdCardNumber}</option>
+                        <option value="uah_card">UAH Card: ${uahCardNumber}</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <lable for="">Select Account</lable>
-                    <select name="account_id" class="form-control">
-                        <option value="">-- Select Account --</option>
-                    </select>
+                    <lable for="">Enter The Recipient's Card</lable>
+                    <input type="text" name="recipients-card" class="form-control" placeholder="000000">
                 </div>
                 <div class="form-group mb-2">
                     <label for="">Enter Transfer Amount</label>
@@ -113,26 +136,37 @@
 </div>
 
 <div class="container d-flex">
-    <!--    <button class="transact-edit btn t-1 shadow" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">-->
-    <!--      <i class="fa-solid fa-credit-card me-1" style="color: #ffffff;"></i>Add New Account-->
-    <!--    </button>-->
     <div class="sm-img"></div>
     <button class="transact-edit btn t-1 ms-auto shadow mt-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
         <i class="fa-solid fa-wallet me-1 " style="color: #ffffff;"></i>Transact
     </button>
 </div>
 
-<div class="container d-flex t-2 py-3">
-    <h2 class="me-auto">Total Balance</h2>
-    <h2 class="ms-auto">0.00</h2>
+<div class="container d-flex t-2 mt-3">
+    <h2 class="me-auto">USD Balance</h2>
+    <h2 class="ms-auto">
+        <c:if test="${requestScope.totalUsdBalance !=null}">
+            <c:out value="${totalUsdBalance}"/>
+        </c:if>
+    </h2>
+    <i class="fa-solid fa-dollar-sign ms-2 mt-1" style="color: #ffffff; font-size: 28px; height: 21px; width: 30px;"></i>
+</div>
+<div class="container d-flex t-2">
+    <h2 class="me-auto">UAH Balance</h2>
+    <h2 class="ms-auto">
+        <c:if test="${requestScope.totalUahBalance !=null}">
+            <c:out value="${totalUahBalance}"/>
+        </c:if>
+    </h2>
+    <i class="fa-solid fa-hryvnia-sign ms-2 mt-1" style="color: #ffffff; font-size: 28px; height: 21px; width: 30px;"></i>
 </div>
 
 <div class="container">
     <div class="accordion">
         <div class="accordion-item">
-            <h2 class="accordion-header transact-bar-edit" id="panelsStayOpen-headingOne">
-                <button class="accordion-button collapsed transact-bar-edit" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
-                    Accordion Item #1
+            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                <button class="accordion-button collapsed t-3" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
+                    <div class="card-title me-1">UAH</div> card
                 </button>
             </h2>
             <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
@@ -144,8 +178,8 @@
 
         <div class="accordion-item">
             <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                    Accordion Item #2
+                <button class="accordion-button collapsed t-3" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                    <div class="card-title me-1">USD</div> card
                 </button>
             </h2>
             <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
@@ -157,8 +191,8 @@
 
         <div class="accordion-item">
             <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                    Accordion Item #3
+                <button class="accordion-button collapsed t-3" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                    <div class="card-title me-1">USD</div> to <div class="card-title ms-1 me-1">UAH</div> exchange rate
                 </button>
             </h2>
             <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">

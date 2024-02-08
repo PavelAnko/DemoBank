@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", function() {
     const transactType = document.querySelector("#transact-type");
-    const paymentCard = document.querySelector(".payment-card");
+    const paymentCard = document.querySelector(".refill-card");
     const transactCard = document.querySelector(".transfer-card");
 
     transactType.addEventListener("change", () => {
         switch (transactType.value){
-            case "payment":
+            case "refill":
                 paymentCard.style.display="block";
                 if (paymentCard.nextElementSibling) {
                     paymentCard.nextElementSibling.style.display="none";
@@ -23,3 +23,5 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
+
+

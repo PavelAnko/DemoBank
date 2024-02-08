@@ -14,8 +14,8 @@ function validateForm() {
     if (firstName.length < 1) {
         document.getElementById("first_name_error").style.display = "block";
         formError = true;
-    } else if (firstName.length < 3) {
-        document.getElementById("first_name_error").innerHTML = "First name cannot be 3 characters long!";
+    } else if (firstName.length <= 1) {
+        document.getElementById("first_name_error").innerHTML = "First name cannot be 1 characters long!";
         document.getElementById("first_name_error").style.display = "block";
         formError = true;
     }

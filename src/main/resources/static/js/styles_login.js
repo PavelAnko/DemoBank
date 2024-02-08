@@ -1,21 +1,24 @@
 function validateLoginForm() {
-    var email = document.querySelector(".login-form input[name='email']").value;
-    var password = document.querySelector(".login-form input[name='password']").value;
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("password").value;
+    var formError = false;
+    var errorMessages = document.getElementsByClassName("error-message");
+    for (var i = 0; i < errorMessages.length; i++) {
+        errorMessages[i].style.display = "none";
+    }
+    if (email.length < 1) {
+        document.getElementById("email_error").style.display = "block";
+        formError = true;
+    }
+    if (password.length < 1) {
+        document.getElementById("password_error").style.display = "block";
+        formError = true;
+    }
 
-    var emailError = document.getElementById("email_error");
-    var passwordError = document.getElementById("password_error");
-
-    if (email.trim() === "") {
-        emailError.style.display = "block";
-        passwordError.style.display = "none";
+    if (formError) {
+        document.getElementById("form_error").style.display = "block";
         return false;
     }
-    if (password.trim() === "") {
-        passwordError.style.display = "block";
-        emailError.style.display = "none";
-        return false;
-    }
 
-    document.getElementById("login_form_error").style.display = "none";
     return true;
 }

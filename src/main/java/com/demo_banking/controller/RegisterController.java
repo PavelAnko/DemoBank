@@ -18,11 +18,12 @@ public class RegisterController {
         return "register";
     }
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
     @Autowired
     private final UserRepository userRepository;
 
-    public RegisterController(UserRepository userRepository) {
+    public RegisterController(PasswordEncoder passwordEncoder, UserRepository userRepository) {
+        this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
     }
 
@@ -40,6 +41,6 @@ public class RegisterController {
         users.setPassword(hashedPassword);
         users.setData_created(new Date());
         userRepository.save(users);
-        return "redirect:/dashboard";
+        return "redirect:/app/dashboard";
     }
 }

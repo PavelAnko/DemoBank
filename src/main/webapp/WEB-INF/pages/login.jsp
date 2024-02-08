@@ -19,19 +19,34 @@
         <h1 class="t-1">
             <i class="fa fa-user-circle"></i> Log In
         </h1>
-        <form action="login_with_an_existing_user" class="login-form">
+        <c:if test="${requestScope.success != null}">
+            <div class="alert alert-success text-center border border-success">
+                <b>${requestScope.success}</b>
+            </div>
+        </c:if>
+        <c:if test="${requestScope.error != null}">
+            <div class="alert alert-danger text-center border border-danger">
+                <b>${requestScope.error}</b>
+            </div>
+        </c:if>
+        <c:if test="${logged_out != null}">
+            <div class="alert alert-info text-center border border-info">
+                <b>${logged_out}</b>
+            </div>
+        </c:if>
+        <form action="/login" method="post" class="reg-form" onsubmit="return validateLoginForm()">
             <div class="form-group col-13">
-                <input type="email" name="email" class="form-control form-control-lg t-2" placeholder="Enter Email"/>
+                <input type="email" name="email" id="email" class="form-control form-control-lg t-2" placeholder="Enter Email"/>
                 <div id="email_error" class="error-message" style="display: none;">Email cannot be empty!</div>
             </div>
             <div class="form-group col-13">
-                <input type="password" name="password" class="form-control form-control-lg t-2" placeholder="Password"/>
+                <input type="password" name="password" id="password" class="form-control form-control-lg t-2" placeholder="Password"/>
                 <div id="password_error" class="error-message" style="display: none;">Password cannot be empty!</div>
             </div>
             <div class="form-group col-13">
-                <a href="" class="btn btn-primary t-1" onclick="return validateLoginForm()">Log In</a>
+                <button type="submit" class="btn btn-primary t-1">Log In</button>
             </div>
-            <div id="login_form_error" class="error-message" style="display: none;">Please fill in all fields!</div>
+            <div id="form_error" class="error-message">Please fix the errors above!</div>
         </form>
         <p class="class-text t-1">
             Don't have an account? <a href="/register" class="t-1 text-warning">Sing Up</a>
