@@ -104,3 +104,31 @@ body{
     font-weight: 600;
 }
 
+.error-message {
+    display: none;
+    color: #fff;
+    background-color: #ff4444;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-top: 5px;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.container-card-error{
+    margin: 0 auto;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-error{
+    width: 35%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    background-color: red;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-top: 5px;
+}

@@ -2,26 +2,36 @@ package com.demo_banking.controller;
 
 import com.demo_banking.auxiliary_methods.GenAccountNumber;
 import com.demo_banking.models.Account;
+import com.demo_banking.models.Replenishment;
+import com.demo_banking.models.Transact;
 import com.demo_banking.models.User;
 import com.demo_banking.repository.AccountRepository;
+import com.demo_banking.repository.ReplenishmentRepository;
+import com.demo_banking.repository.TransactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
 @RequestMapping("/app")
 public class DashboardController {
-        @Autowired
+    @Autowired
     private AccountRepository accountRepository;
+    @Autowired
+    private TransactRepository transactRepository;
+    @Autowired
+    private ReplenishmentRepository replenishmentRepository;
 
 
     @GetMapping("/dashboard")
-    public ModelAndView getDashboard(HttpSession session){
+    public ModelAndView getDashboard(HttpSession session, Model model, @ModelAttribute("error") String error){
         ModelAndView getDashboardPage = new ModelAndView("dashboard");
         User users = (User) session.getAttribute("users");
 
@@ -29,20 +39,20 @@ public class DashboardController {
             return new ModelAndView("redirect:/login");
         }
 
-        String uniqueCardNumberUSD = String.valueOf(GenAccountNumber.generateAccountNumber());
-        String uniqueCardNumberUAH = String.valueOf(GenAccountNumber.generateAccountNumber());
+        String cardNumberUSD = String.valueOf(GenAccountNumber.generateAccountNumber());
+        String cardNumberUAH = String.valueOf(GenAccountNumber.generateAccountNumber());
 //        List<Account> userAccounts = accountRepository.getAccountById(user.getUser_id());
 
         String usdCardNumber = "";
         String uahCardNumber = "";
 
-        if (accountRepository.existsByAccountUsdNumber(uniqueCardNumberUSD)==true){
-            uniqueCardNumberUSD = String.valueOf(GenAccountNumber.generateAccountNumber());
-        }
-
-        if (accountRepository.existsByAccountUahNumber(uniqueCardNumberUAH)==true){
-            uniqueCardNumberUAH = String.valueOf(GenAccountNumber.generateAccountNumber());
-        }
+//        if (accountRepository.existsByAccountUsdNumber(cardNumberUSD)==true){
+//            cardNumberUSD = String.valueOf(GenAccountNumber.generateAccountNumber());
+//        }
+//
+//        if (accountRepository.existsByAccountUahNumber(cardNumberUAH)==true){
+//            cardNumberUAH = String.valueOf(GenAccountNumber.generateAccountNumber());
+//        }
 
         Optional<Account> existingAccountOptional = accountRepository.findByUserEmail(users.getEmail());
         if (existingAccountOptional.isPresent()){
@@ -58,15 +68,15 @@ public class DashboardController {
 
         else{
             Account account = new Account();
-            account.setAccount_usd_number(uniqueCardNumberUSD);
-            account.setAccount_uah_number(uniqueCardNumberUAH);
+            account.setAccount_usd_number(cardNumberUSD);
+            account.setAccount_uah_number(cardNumberUAH);
             account.setBalance_usd(account.getBalance_usd());
             account.setBalance_uah(account.getBalance_uah());
             account.setUser_id(users.getUser_id());
             account.setUser_email(users.getEmail());
             accountRepository.save(account);
-            usdCardNumber = uniqueCardNumberUSD;
-            uahCardNumber = uniqueCardNumberUAH;
+            usdCardNumber = cardNumberUSD;
+            uahCardNumber = cardNumberUAH;
             getDashboardPage.addObject("accounts", account);
             session.setAttribute("accounts", account);
         }
@@ -81,11 +91,25 @@ public class DashboardController {
         getDashboardPage.addObject("usdCardNumber", usdCardNumber);
         getDashboardPage.addObject("uahCardNumber", uahCardNumber);
 
+        model.addAttribute("error", error);
         return getDashboardPage;
     }
 
-//    @PostMapping("/dashboard")
-//    public String redirectToDashboard() {
-//        return "accounts_display";
-//    }
+    @GetMapping("/dashboard/transact_history")
+    public ModelAndView getTransactHistory(HttpSession session) {
+        ModelAndView getTransactHistoryPage = new ModelAndView("transactHistory");
+        Account account = (Account) session.getAttribute("accounts");
+        List<Transact> userTransactHistory = transactRepository.findByAccountId(account.getAccount_id());
+        getTransactHistoryPage.addObject("transact", userTransactHistory);
+        return getTransactHistoryPage;
+    }
+
+    @GetMapping("/dashboard/replenishment_history")
+    public ModelAndView getReplenishmentHistory(HttpSession session) {
+        ModelAndView getReplenishmentHistoryPage = new ModelAndView("refillHistory");
+        Account account = (Account) session.getAttribute("accounts");
+        List<Replenishment> userReplenishmentHistory = replenishmentRepository.findByAccountId(account.getAccount_id());
+        getReplenishmentHistoryPage.addObject("refill", userReplenishmentHistory);
+        return getReplenishmentHistoryPage;
+    }
 }

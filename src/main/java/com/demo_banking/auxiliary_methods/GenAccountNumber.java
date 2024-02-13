@@ -7,7 +7,7 @@ public class GenAccountNumber {
         int accountNumber;
         Random random = new Random();
         int bound = 1000;
-        accountNumber = bound * random.nextInt(9000)+bound;
+        accountNumber = bound * (random.nextInt(9000)+bound);
         return accountNumber;
     }
 }
