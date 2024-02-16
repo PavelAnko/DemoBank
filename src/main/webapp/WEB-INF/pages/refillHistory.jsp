@@ -13,7 +13,7 @@
     <script src="https://kit.fontawesome.com/15c48be795.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
     <script src="${pageContext.request.contextPath}/js/bootstrap.bundle.js"></script>
-    <title>Replenishment  History</title>
+    <title>Replenishment History</title>
 </head>
 <body>
 
@@ -48,16 +48,19 @@
                         <th>Replenishment Type</th>
                         <th>Amount</th>
                         <th>Source</th>
-                        <th>Status</th>
-                        <th>Created at</th>
+                        <th>Listed on</th>
+                        <th>Payer</th>
+                        <th>Replenished at</th>
                     </tr>
+                    <% int replenishmentCounter = 1; %>
                     <c:forEach items="${requestScope.refill}" var="refill">
                         <tr>
-                            <td>${refill.replenishment_id}</td>
+                            <td><%= replenishmentCounter++ %></td>
                             <td>${refill.replenishment_type}</td>
                             <td>${refill.amount}</td>
                             <td>${refill.source}</td>
-                            <td>${refill.status}</td>
+                            <td>${refill.listed_on}</td>
+                            <td>${refill.first_name} ${refill.last_name}</td>
                             <td>${refill.created_at}</td>
                         </tr>
                     </c:forEach>

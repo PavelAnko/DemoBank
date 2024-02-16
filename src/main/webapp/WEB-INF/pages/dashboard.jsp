@@ -79,7 +79,7 @@
 
         <div class="card transfer-card">
             <div class="card-body">
-                <form action="/money_transfer" method="post" onsubmit="return validateTransferForm()">
+                <form action="/app/dashboard/money_transfer" method="post" onsubmit="return validateTransferForm()">
                     <div class="form-group">
                         <lable for="select_card">Select Your Card</lable>
                         <select name="select_card" class="form-control" id="select_transfer_card">
@@ -147,8 +147,15 @@
     <i class="fa-solid fa-hryvnia-sign ms-2 mt-1" style="color: #ffffff; font-size: 28px; height: 21px; width: 30px;"></i>
 </div>
 
-<div class="container-card-error" id="errorContainer">
-    <div class="card-error" id="errorMessage"></div>
+<div class="container-card-error">
+    <c:if test="${showError}">
+        <div class="alert alert-danger text-center border border-danger" id="errorAlert">
+            <b>${error}</b>
+            <button type="button" class="close" aria-label="Close" onclick="closeError()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </c:if>
 </div>
 
 <div class="container">
@@ -161,10 +168,22 @@
             </h2>
             <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
                 <div class="accordion-body">
-                    <strong>Bank institution</strong>: Your Online Bank<br>
-                    <strong>Payee</strong>: <span id="usernameUSD">${users.first_name} ${users.last_name}</span> <br>
-                    <strong>Card number</strong>: ${usdCardNumber}<br>
-                    <strong>Account currency</strong>: USD
+                    <div class="card-info">
+                        <strong>Bank institution</strong>
+                        <span>Your Online Bank</span>
+                    </div>
+                    <div class="card-info mt-3">
+                        <strong>Payee</strong>
+                        <span id="usernameUSD">${users.first_name} ${users.last_name}</span>
+                    </div>
+                    <div class="card-info mt-3">
+                        <strong>Card number</strong>
+                        <span>${usdCardNumber}</span>
+                    </div>
+                    <div class="card-info mt-3">
+                        <strong>Account currency</strong>
+                        <span>USD</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -177,10 +196,22 @@
             </h2>
             <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
                 <div class="accordion-body">
-                    <strong>Bank institution</strong>: Your Online Bank<br>
-                    <strong>Payee</strong>: <span id="usernameUAH">${users.first_name} ${users.last_name}</span> <br>
-                    <strong>Card number</strong>: ${uahCardNumber}<br>
-                    <strong>Account currency</strong>: UAH
+                    <div class="card-info">
+                        <strong>Bank institution</strong>
+                        <span>Your Online Bank</span>
+                    </div>
+                    <div class="card-info mt-3">
+                        <strong>Payee</strong>
+                        <span id="usernameUAH">${users.first_name} ${users.last_name}</span>
+                    </div>
+                    <div class="card-info mt-3">
+                        <strong>Card number</strong>
+                        <span>${uahCardNumber}</span>
+                    </div>
+                    <div class="card-info mt-3">
+                        <strong>Account currency</strong>
+                        <span>UAH</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -193,8 +224,16 @@
             </h2>
             <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
                 <div class="accordion-body">
-                    <strong>USD to UAH Exchange Rate: </strong><span id="usdToUahRate"></span><br>
-                    <strong>UAH to USD Exchange Rate: </strong><span id="uahToUsdRate"></span>
+                    <div class="accordion-body">
+                        <div class="card-info">
+                            <strong>USD to UAH Exchange Rate</strong>
+                            <span> 1 USD => <span id="usdToUahRate"></span> UAH</span>
+                        </div>
+                        <div class="card-info mt-3">
+                            <strong>UAH to USD Exchange Rate</strong>
+                            <span> 1 UAH => <span id="uahToUsdRate"></span> USD </span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

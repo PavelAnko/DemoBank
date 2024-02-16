@@ -1,6 +1,8 @@
 package com.demo_banking.repository;
 
 import com.demo_banking.models.Replenishment;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -26,4 +28,8 @@ public interface ReplenishmentRepository  extends CrudRepository<Replenishment, 
 
     @Query("SELECT t FROM Replenishment t WHERE t.account_id = :account_id")
     List<Replenishment> findByAccountId(int account_id);
+
+    @Query("SELECT r FROM Replenishment r WHERE r.account_id= ?1")
+    Page<Replenishment> findByAccountIdPaged(int accountId, Pageable pageable);
+
 }

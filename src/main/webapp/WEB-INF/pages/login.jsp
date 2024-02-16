@@ -11,7 +11,7 @@
     <script src="https://kit.fontawesome.com/15c48be795.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/styles.css">
     <script src="${pageContext.request.contextPath}/js/styles_login.js"></script>
-    <title>LogIn</title>
+    <title>Log In</title>
 </head>
 <body class="d-flex align-items-center justify-content-center">
 <div class="card login-form-card col-4 bg-transparent border-0">

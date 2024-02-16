@@ -1,4 +1,4 @@
-package com.demo_banking.auxiliary_methods;
+package com.demo_banking.service;
 
 import com.demo_banking.models.Account;
 import com.demo_banking.models.Replenishment;
@@ -14,14 +14,11 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Service
-public class SaveToDataBase {
+public class SaveToDBService {
+    @Autowired
     private TransactRepository transactRepository;
+    @Autowired
     private ReplenishmentRepository replenishmentRepository;
-
-    public SaveToDataBase(TransactRepository transactRepository, ReplenishmentRepository replenishmentRepository) {
-        this.transactRepository = transactRepository;
-        this.replenishmentRepository = replenishmentRepository;
-    }
 
     public void saveTransact(Account sender, Account recipient, String currency, BigDecimal amount, String recipientFirsName, String recipientLastName) {
         Transact transact = new Transact();
@@ -62,6 +59,10 @@ public class SaveToDataBase {
         transactRepository.save(transact);
     }
 
+    public void addAccountCardNumber(Model model, Account account){
+        model.addAttribute("uahCardNumber", account.getAccount_uah_number());
+        model.addAttribute("usdCardNumber", account.getAccount_usd_number());
+    }
     public void addAccountBalancesToModel(Model model, Account account) {
         model.addAttribute("totalUsdBalance", account.getBalance_usd());
         model.addAttribute("totalUahBalance", account.getBalance_uah());

@@ -15,8 +15,34 @@ public class Replenishment {
     private String replenishment_type;
     private double amount;
     private String source;
-    private String status;
+    private String listed_on;
     private LocalDateTime created_at;
+    private String first_name;
+    private String last_name;
+
+    public String getListed_on() {
+        return listed_on;
+    }
+
+    public void setListed_on(String listed_on) {
+        this.listed_on = listed_on;
+    }
+
+    public String getFirst_name() {
+        return first_name;
+    }
+
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
+    }
+
+    public String getLast_name() {
+        return last_name;
+    }
+
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
+    }
 
     public int getReplenishment_id() {
         return replenishment_id;
@@ -58,13 +84,6 @@ public class Replenishment {
         this.source = source;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
     public LocalDateTime getCreated_at() {
         return created_at;

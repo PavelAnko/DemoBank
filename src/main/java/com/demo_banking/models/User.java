@@ -1,7 +1,6 @@
 package com.demo_banking.models;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 import java.util.Date;
 
 @Entity

@@ -12,7 +12,6 @@
     <script src="https://kit.fontawesome.com/15c48be795.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/styles.css">
     <script src="${pageContext.request.contextPath}/js/styles_register.js"></script>
-
     <title>Registration</title>
 </head>
 <body class="d-flex align-items-center justify-content-center">

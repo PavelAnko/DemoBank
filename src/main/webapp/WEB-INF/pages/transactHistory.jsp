@@ -49,15 +49,18 @@
                         <th>Amount</th>
                         <th>Source</th>
                         <th>Status</th>
-                        <th>Created at</th>
+                        <th>Recipient</th>
+                        <th>Transferred at</th>
                     </tr>
+                    <% int transactionCounter = 1; %>
                     <c:forEach items="${requestScope.transact}" var="transact">
                         <tr>
-                            <td>${transact.transaction_id}</td>
+                            <td><%= transactionCounter++ %></td>
                             <td>${transact.transaction_type}</td>
                             <td>${transact.amount}</td>
                             <td>${transact.source}</td>
                             <td>${transact.status}</td>
+                            <td>${transact.first_name} ${transact.last_name}</td>
                             <td>${transact.created_at}</td>
                         </tr>
                     </c:forEach>

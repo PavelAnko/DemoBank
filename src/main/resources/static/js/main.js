@@ -60,3 +60,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         sessionStorage.removeItem('error');
     }
 });
+
+function closeError() {
+    window.location.href = '/app/dashboard';
+}

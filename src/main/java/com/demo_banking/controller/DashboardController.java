@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/app")
+@RequestMapping({"/app"})
 public class DashboardController {
     @Autowired
     private AccountRepository accountRepository;
@@ -31,7 +31,7 @@ public class DashboardController {
 
 
     @GetMapping("/dashboard")
-    public ModelAndView getDashboard(HttpSession session, Model model, @ModelAttribute("error") String error){
+    public ModelAndView getDashboard(HttpSession session, Model model, @ModelAttribute("error") String error) {
         ModelAndView getDashboardPage = new ModelAndView("dashboard");
         User users = (User) session.getAttribute("users");
 
@@ -41,21 +41,12 @@ public class DashboardController {
 
         String cardNumberUSD = String.valueOf(GenAccountNumber.generateAccountNumber());
         String cardNumberUAH = String.valueOf(GenAccountNumber.generateAccountNumber());
-//        List<Account> userAccounts = accountRepository.getAccountById(user.getUser_id());
 
         String usdCardNumber = "";
         String uahCardNumber = "";
 
-//        if (accountRepository.existsByAccountUsdNumber(cardNumberUSD)==true){
-//            cardNumberUSD = String.valueOf(GenAccountNumber.generateAccountNumber());
-//        }
-//
-//        if (accountRepository.existsByAccountUahNumber(cardNumberUAH)==true){
-//            cardNumberUAH = String.valueOf(GenAccountNumber.generateAccountNumber());
-//        }
-
         Optional<Account> existingAccountOptional = accountRepository.findByUserEmail(users.getEmail());
-        if (existingAccountOptional.isPresent()){
+        if (existingAccountOptional.isPresent()) {
             Account account = existingAccountOptional.get();
             account.setBalance_usd(account.getBalance_usd());
             account.setBalance_uah(account.getBalance_uah());
@@ -64,9 +55,7 @@ public class DashboardController {
             uahCardNumber = account.getAccount_uah_number();
             getDashboardPage.addObject("accounts", account);
             session.setAttribute("accounts", account);
-        }
-
-        else{
+        } else {
             Account account = new Account();
             account.setAccount_usd_number(cardNumberUSD);
             account.setAccount_uah_number(cardNumberUAH);
@@ -74,9 +63,9 @@ public class DashboardController {
             account.setBalance_uah(account.getBalance_uah());
             account.setUser_id(users.getUser_id());
             account.setUser_email(users.getEmail());
-            accountRepository.save(account);
             usdCardNumber = cardNumberUSD;
             uahCardNumber = cardNumberUAH;
+            accountRepository.save(account);
             getDashboardPage.addObject("accounts", account);
             session.setAttribute("accounts", account);
         }

@@ -1,7 +1,5 @@
 package com.demo_banking.models;
 
-import net.bytebuddy.implementation.bind.annotation.Default;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 
@@ -9,6 +7,7 @@ import java.math.BigDecimal;
 @Table(name = "accounts")
 public class Account {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int account_id;
     private int user_id;
     private String user_email;
