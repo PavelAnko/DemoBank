@@ -1,14 +1,10 @@
 package com.demo_banking.controller;
-
 import com.demo_banking.models.User;
 import com.demo_banking.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Date;
-
 
 @Controller
 public class RegisterController {
@@ -17,12 +13,6 @@ public class RegisterController {
     public String getRegister() {
         return "register";
     }
-/*
-    @Autowired
-    private final PasswordEncoder passwordEncoder;
-    @Autowired
-    private final UserRepository userRepository;
-*/
 
     PasswordEncoder passwordEncoder;
     UserRepository userRepository;

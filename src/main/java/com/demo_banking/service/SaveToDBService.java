@@ -15,10 +15,6 @@ import java.time.LocalDateTime;
 
 @Service
 public class SaveToDBService {
-/*    @Autowired
-    private TransactRepository transactRepository;
-    @Autowired
-    private ReplenishmentRepository replenishmentRepository;*/
     TransactRepository transactRepository;
     ReplenishmentRepository replenishmentRepository;
 

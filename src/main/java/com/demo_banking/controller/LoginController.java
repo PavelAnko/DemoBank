@@ -1,8 +1,6 @@
 package com.demo_banking.controller;
-
 import com.demo_banking.models.User;
 import com.demo_banking.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,8 +12,6 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
-//    @Autowired
-//    private UserRepository userRepository;
 
     UserRepository userRepository;
 

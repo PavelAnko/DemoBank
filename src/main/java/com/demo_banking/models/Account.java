@@ -1,7 +1,5 @@
 package com.demo_banking.models;
 
-import org.hibernate.validator.constraints.UniqueElements;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 

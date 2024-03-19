@@ -1,5 +1,4 @@
 package com.demo_banking.auxiliary_methods;
-
 import java.util.Random;
 
 public class GenAccountNumber {

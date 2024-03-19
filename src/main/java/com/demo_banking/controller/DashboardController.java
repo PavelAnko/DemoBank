@@ -8,7 +8,6 @@ import com.demo_banking.models.User;
 import com.demo_banking.repository.AccountRepository;
 import com.demo_banking.repository.ReplenishmentRepository;
 import com.demo_banking.repository.TransactRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
@@ -24,12 +23,6 @@ import java.util.Optional;
 @Controller
 @RequestMapping({"/app"})
 public class DashboardController {
-/*    @Autowired
-    private AccountRepository accountRepository;
-    @Autowired
-    private TransactRepository transactRepository;
-    @Autowired
-    private ReplenishmentRepository replenishmentRepository;*/
     static final int ITEMS_PER_PAGE = 10;
     AccountRepository accountRepository;
     TransactRepository transactRepository;

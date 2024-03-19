@@ -1,7 +1,5 @@
 package com.demo_banking.repository;
-
 import com.demo_banking.models.Account;
-import com.demo_banking.models.Replenishment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

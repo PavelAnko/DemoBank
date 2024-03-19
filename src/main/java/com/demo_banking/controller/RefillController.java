@@ -1,10 +1,8 @@
 package com.demo_banking.controller;
-
 import com.demo_banking.service.SaveToDBService;
 import com.demo_banking.models.Account;
 import com.demo_banking.models.User;
 import com.demo_banking.repository.AccountRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,10 +12,6 @@ import java.math.BigDecimal;
 
 @Controller
 public class RefillController {
-/*    @Autowired
-    private AccountRepository accountRepository;
-    @Autowired
-    private SaveToDBService saveToDataBase;*/
 
     SaveToDBService saveToDataBase;
     AccountRepository accountRepository;
