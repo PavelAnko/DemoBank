@@ -10,8 +10,9 @@ import java.time.LocalDateTime;
 public class Replenishment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int replenishment_id;
-    private int account_id;
+    private Long replenishment_id;
+    private Long refill_id_user;
+    private Long account_id;
     private String replenishment_type;
     private double amount;
     private String source;
@@ -19,6 +20,14 @@ public class Replenishment {
     private LocalDateTime created_at;
     private String first_name;
     private String last_name;
+
+    public Long getRefill_id_user() {
+        return refill_id_user;
+    }
+
+    public void setRefill_id_user(Long refill_id_user) {
+        this.refill_id_user = refill_id_user;
+    }
 
     public String getListed_on() {
         return listed_on;
@@ -44,19 +53,19 @@ public class Replenishment {
         this.last_name = last_name;
     }
 
-    public int getReplenishment_id() {
+    public Long getReplenishment_id() {
         return replenishment_id;
     }
 
-    public void setReplenishment_id(int replenishment_id) {
+    public void setReplenishment_id(Long replenishment_id) {
         this.replenishment_id = replenishment_id;
     }
 
-    public int getAccount_id() {
+    public Long getAccount_id() {
         return account_id;
     }
 
-    public void setAccount_id(int account_id) {
+    public void setAccount_id(Long account_id) {
         this.account_id = account_id;
     }
 

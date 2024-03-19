@@ -17,10 +17,15 @@ public class RegisterController {
     public String getRegister() {
         return "register";
     }
+/*
     @Autowired
     private final PasswordEncoder passwordEncoder;
     @Autowired
     private final UserRepository userRepository;
+*/
+
+    PasswordEncoder passwordEncoder;
+    UserRepository userRepository;
 
     public RegisterController(PasswordEncoder passwordEncoder, UserRepository userRepository) {
         this.passwordEncoder = passwordEncoder;

@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 import java.util.Optional;
 
 @Repository
-public interface AccountRepository extends JpaRepository<Account, Integer> {
+public interface AccountRepository extends JpaRepository<Account, Long> {
     @Query("SELECT a FROM Account a WHERE a.account_usd_number = :usdCardNumber")
     Account findByUsdCardNumber(String usdCardNumber);
 
@@ -22,9 +22,9 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
     Optional<Account> findByUserEmail(@Param("userEmail") String userEmail);
 
     @Query("SELECT SUM(a.balance_usd) FROM Account a WHERE a.user_id = ?1")
-    BigDecimal getUsdBalance(int user_id);
+    BigDecimal getUsdBalance(Long user_id);
 
     @Query("SELECT SUM(a.balance_uah) FROM Account a WHERE a.user_id = ?1")
-    BigDecimal getUahBalance(int user_id);
+    BigDecimal getUahBalance(Long user_id);
 
 }

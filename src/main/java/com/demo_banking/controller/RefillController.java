@@ -14,10 +14,18 @@ import java.math.BigDecimal;
 
 @Controller
 public class RefillController {
-    @Autowired
+/*    @Autowired
     private AccountRepository accountRepository;
     @Autowired
-    private SaveToDBService saveToDataBase;
+    private SaveToDBService saveToDataBase;*/
+
+    SaveToDBService saveToDataBase;
+    AccountRepository accountRepository;
+
+    public RefillController(SaveToDBService saveToDataBase, AccountRepository accountRepository) {
+        this.saveToDataBase = saveToDataBase;
+        this.accountRepository = accountRepository;
+    }
 
     @PostMapping("/refill_balance")
     public String refillCard(@RequestParam("select_card") String selectCard,

@@ -10,17 +10,21 @@ import java.math.BigDecimal;
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int account_id;
-    private int user_id;
+    private Long account_id;
+    private Long user_id;
     private String user_email;
     private String account_usd_number;
     private String account_uah_number;
     private BigDecimal balance_usd = BigDecimal.valueOf(0.00);
     private BigDecimal balance_uah = BigDecimal.valueOf(0.00);
 
-    public int getAccount_id() {
-        return account_id;
-    }
+    public Long getAccount_id() { return account_id; }
+
+    public void setAccount_id(Long account_id) { this.account_id = account_id; }
+
+    public Long getUser_id() { return user_id; }
+
+    public void setUser_id(Long user_id) { this.user_id = user_id; }
 
     public String getUser_email() {
         return user_email;
@@ -28,18 +32,6 @@ public class Account {
 
     public void setUser_email(String user_email) {
         this.user_email = user_email;
-    }
-
-    public void setAccount_id(int account_id) {
-        this.account_id = account_id;
-    }
-
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
     }
 
     public String getAccount_usd_number() {
@@ -73,4 +65,5 @@ public class Account {
     public void setBalance_uah(BigDecimal balance_uah) {
         this.balance_uah = balance_uah;
     }
+
 }

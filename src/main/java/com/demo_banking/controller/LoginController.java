@@ -14,8 +14,14 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class LoginController {
-    @Autowired
-    private UserRepository userRepository;
+//    @Autowired
+//    private UserRepository userRepository;
+
+    UserRepository userRepository;
+
+    public LoginController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @GetMapping("/login")
     public String getLogin(){

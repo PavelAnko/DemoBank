@@ -15,10 +15,17 @@ import java.time.LocalDateTime;
 
 @Service
 public class SaveToDBService {
-    @Autowired
+/*    @Autowired
     private TransactRepository transactRepository;
     @Autowired
-    private ReplenishmentRepository replenishmentRepository;
+    private ReplenishmentRepository replenishmentRepository;*/
+    TransactRepository transactRepository;
+    ReplenishmentRepository replenishmentRepository;
+
+    public SaveToDBService(TransactRepository transactRepository, ReplenishmentRepository replenishmentRepository) {
+        this.transactRepository = transactRepository;
+        this.replenishmentRepository = replenishmentRepository;
+    }
 
     public void saveTransact(Account sender, Account recipient, String currency, BigDecimal amount, String recipientFirsName, String recipientLastName) {
         Transact transact = new Transact();
