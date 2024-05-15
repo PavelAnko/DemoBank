@@ -5,6 +5,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class RegisterController {
@@ -27,6 +28,11 @@ public class RegisterController {
                            @RequestParam("last_name") String last_name,
                            @RequestParam("email") String email,
                            @RequestParam("password") String password) {
+        List<String> allUserEmails = userRepository.getAllUserEmails();
+        if (allUserEmails.contains(email)) {
+            return "redirect:/register?error=email_exist";
+        }
+
         String hashedPassword = passwordEncoder.encode(password);
 
         User users = new User();

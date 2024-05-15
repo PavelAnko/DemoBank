@@ -10,6 +10,11 @@ function validateLoginForm() {
         document.getElementById("email_error").style.display = "block";
         formError = true;
     }
+
+   // if (urlParams.get('error') === 'duplicateEmail') {
+   //      document.getElementById("exist_email_error").style.display = "block";
+   //      formError = true;
+   //  }
     if (password.length < 1) {
         document.getElementById("password_error").style.display = "block";
         formError = true;

@@ -34,6 +34,9 @@
             <div class="form-group col-13">
                 <input type="email" name="email" id="email" class="form-control form-control-lg t-2" placeholder="Enter Email"/>
                 <div id="email_error" class="error-message">Please enter a valid email address!</div>
+                <c:if test="${duplicateEmailError}">
+                    <div id="exist_email_error" class="error-message">This email address already exists. Please choose another.</div>
+                </c:if>
             </div>
             <div class="row">
                 <div class="form-group col">
@@ -60,3 +63,4 @@
 </div>
 </body>
 </html>
+
